@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::guard('admin')->check()) {
-            return redirect()->route('login_form')->with('error', 'Please Login First');
+            return redirect()->route('admin.login_form')->with('error', 'Please Login First');
         }
 
 

@@ -21,11 +21,13 @@ use App\Http\Controllers\AdminController;
 
 Route::prefix('admin')->group(function (){
 
-    Route::get('/login',[AdminController::class, 'index'])->name('login_form');
+    Route::get('/login',[AdminController::class, 'login_form'])->name('admin.login_form');
 
-    Route::get('/login/owner',[AdminController::class, 'login'])->name('admin.login');
+    Route::post('/login/store',[AdminController::class, 'login_store'])->name('admin.login_store');
 
-    Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
+    Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard')->middleware('admin');
+
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
 
 });
 
