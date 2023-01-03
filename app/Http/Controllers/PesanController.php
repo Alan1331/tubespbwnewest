@@ -118,13 +118,13 @@ class PesanController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->first();
 
-        if(empty($user->alamat))
+        if(empty($user->address))
         {
             Alert::error('Identitasi Harap dilengkapi', 'Error');
             return redirect('profile');
         }
 
-        if(empty($user->nohp))
+        if(empty($user->phoneNumber))
         {
             Alert::error('Identitasi Harap dilengkapi', 'Error');
             return redirect('profile');
