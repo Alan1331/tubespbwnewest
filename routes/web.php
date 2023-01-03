@@ -29,6 +29,10 @@ Route::prefix('admin')->group(function (){
 
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
 
+    Route::get('/product-edit/{id}', [AdminController::class, 'edit_product'])->name('product-edit')->middleware('admin');
+
+    Route::post('/update_barang/{id}', [AdminController::class, 'update_barang'])->name('update_barang')->middleware('admin');
+
 });
 
 /* ---------------------------------- End Admin Route ---------------------------------- */
