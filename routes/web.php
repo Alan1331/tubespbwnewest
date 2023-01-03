@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/* ---------------------------------- Admin Route ---------------------------------- */
+
+Route::prefix('admin')->group(function (){
+
+    Route::get('/login',[AdminController::class, 'login_form'])->name('admin.login_form');
+
+    Route::post('/login/store',[AdminController::class, 'login_store'])->name('admin.login_store');
+
+    Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard')->middleware('admin');
+
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
+
+});
+
+/* ---------------------------------- End Admin Route ---------------------------------- */
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,5 +53,6 @@ Route::delete('check-out/{id}', [App\Http\Controllers\PesanController::class,'de
 Route::get('konfirmasi-check-out', [App\Http\Controllers\PesanController::class,'konfirmasi']);
 Route::get('history', [App\Http\Controllers\HistoryController::class,'index'])->middleware(['auth', 'verified'])->name('history');
 Route::get('history/{id}', [App\Http\Controllers\HistoryController::class,'detail'])->middleware(['auth', 'verified'])->name('detail');
+
 
 require __DIR__.'/auth.php';
