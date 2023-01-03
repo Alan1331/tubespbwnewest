@@ -52,4 +52,9 @@ class Admin extends Authenticatable
     {
          return $this->hasMany('App\Models\Pesanan','user_id', 'id');
     }
+
+    public function barang()
+	{
+	      return $this->hasMany('App\Models\Barang','barang_id', 'id');
+	}
 }

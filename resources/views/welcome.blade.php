@@ -65,15 +65,16 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            @if (Route::has('login', 'admin.login_form'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('admin.login_form') }}">Admin Log in</a>
                         @endif
                     @endauth
                 </div>
@@ -83,9 +84,9 @@
                 <div class="title m-b-md">
                     <img src="{{ url('images/logo.png') }}" class="rounded mx-auto d-block" width="700" alt="">
                 </div>
-
-               
             </div>
         </div>
     </body>
 </html>
+
+

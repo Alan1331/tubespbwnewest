@@ -42,10 +42,7 @@
                                     </td>
                                     <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
                                     <td>
-                                        <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
-
-                                        <!-- Make Status to 4 -->
-                                        <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-check"></i> Selesai</a>
+                                        <a href="{{ url('history') }}/{{ $pesanan->status }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Konfirmasi Order</a>
                                     </td>
                                 </tr>
                                 @endforeach
