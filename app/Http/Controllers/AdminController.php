@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Pesanan;
+use App\Models\PesananDetail;
 use App\Models\User;
+use App\Models\Admin;
+use Alert;
 use Auth;
 use DB;
 
@@ -42,14 +46,59 @@ class AdminController extends Controller
         return view('admin.product-edit', compact('barang'));
     }
 
-    public function update_barang(Request $request, $id){
-        $barang = Barang::findOrFail($id);
-        $barang->harga = $request->input('harga');
-        $barang->stok = $request->input('stok');
+    public function update_barang(Request $request){
+        $barang = Barang::findOrFail($request->input('id'));
+        $barang->harga = AdminController::convertToInt($request->input('harga'));
+        $barang->stok = AdminController::convertToInt($request->input('stok'));
         $barang->keterangan = $request->input('keterangan');
         $barang->save();
 
     	Alert::success('Barang Sukses diupdate', 'Success');
-    	return redirect('admin-dashboard');
+    	return redirect()->route('admin.dashboard');
+    }
+
+    public function convertToInt($string) {
+        // Remove the commas from the string
+        $string = str_replace(',', '', $string);
+        // Convert the string to an integer and return the result
+        return intval($string);
+    }
+
+    public function incoming_order(){
+        $pesanans = Pesanan::where('status', '!=',0)->get();
+
+    	// return view('history.index', compact('pesanans'));
+     	return view('admin.incoming-order', compact('pesanans'));
+    }
+
+    public function order_detail($id)
+    {
+    	$pesanan = Pesanan::where('id', $id)->first();
+    	$pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+
+     	return view('admin.order-detail', compact('pesanan','pesanan_details'));
+    }
+
+    public function add_product(){
+        return view('admin.add-product');
+    }
+
+    public function store_product(Request $request){
+
+        $pic_name= $request->file('gambar_barang')->store('');
+
+        $request->file('gambar_barang')->store('public/storage/uploads');
+
+        $barang = new Barang();
+        $barang->nama_barang = $request->nama_barang;
+        $barang->gambar_barang = $pic_name;
+        $barang->harga = $request->harga;
+        $barang->stok = $request->stok;
+        $barang->keterangan = $request->keterangan;
+
+        $barang->save();
+
+        Alert::success('Barang Sukses ditambah', 'Success');
+        return redirect()->route('add-product');
     }
 }

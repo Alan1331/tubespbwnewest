@@ -26,54 +26,38 @@
                                 <img src="{{ url('uploads') }}/{{ $barang->gambar_barang }}" class="rounded mx-auto d-block" width="100%" alt=""> 
                             </div>
                             <div class="col-md-6 mt-5">
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td>Harga</td>
-                                            <td>:</td>
-                                            <td>
-                                                <form method="post" action="{{ url('update_barang') }}/{{ $barang->id }}" >
-                                               @csrf
-                                                   <input type="text" name="harga" class="form-control" value="Rp. {{ number_format($barang->harga) }}" required autocomplete="harga">
-                                                   <button type="submit" class="btn btn-outline-primary mt-2">
-                                                    Save
-                                                </button>
-                                               </form>
-                                           </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stok</td>
-                                            <td>:</td>
-                                            <td>
-                                                <form method="post" action="{{ url('update_barang') }}/{{ $barang->id }}" >
-                                               @csrf
-                                                   <input type="text" name="stok" class="form-control" value="{{ number_format($barang->stok) }}" required autocomplete="stok">
-                                                   <button type="submit" class="btn btn-outline-primary mt-2">
-                                                    Save
-                                                    </button>
-                                                </form>
-                                           </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Keterangan</td>
-                                            <td>:</td>
-                                            <td>
-                                                 <form method="post" action="{{ url('update_barang') }}/{{ $barang->id }}" >
-                                                @csrf
+                                <form method="post" action="{{ route('admin.update-barang') }}" >
+                                    @csrf
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td>Harga</td>
+                                                <td>:</td>
+                                                <td>
+                                                    <input type="text" name="harga" class="form-control" value="{{ number_format($barang->harga) }}" required autocomplete="harga">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stok</td>
+                                                <td>:</td>
+                                                <td>
+                                                    <input type="text" name="stok" class="form-control" value="{{ number_format($barang->stok) }}" required autocomplete="stok">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Keterangan</td>
+                                                <td>:</td>
+                                                <td>
                                                     <input type="text" name="keterangan" class="form-control" value="{{ $barang->keterangan }}" required autocomplete="keterangan">
-                                                    <button type="submit" class="btn btn-outline-primary mt-2">
-                                                        Save
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>   
-                                        <tr>
-                                            <td>
-                                                
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="id" value="{{ $barang->id }}">
+                                    <button type="submit" class="btn btn-outline-primary mt-2">
+                                        Save
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -45,7 +45,7 @@
                                         <img src="{{ url('uploads') }}/{{ $pesanan_detail->barang->gambar_barang }}" width="100" alt="...">
                                     </td>
                                     <td>{{ $pesanan_detail->barang->nama_barang }}</td>
-                                    <td>{{ $pesanan_detail->jumlah }} kain</td>
+                                    <td>{{ $pesanan_detail->jumlah }} Unit</td>
                                     <td align="right">Rp. {{ number_format($pesanan_detail->barang->harga) }}</td>
                                     <td align="right">Rp. {{ number_format($pesanan_detail->jumlah_harga) }}</td>
                                     <td>

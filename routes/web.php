@@ -31,7 +31,15 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/product-edit/{id}', [AdminController::class, 'edit_product'])->name('product-edit')->middleware('admin');
 
-    Route::post('/update_barang/{id}', [AdminController::class, 'update_barang'])->name('update_barang')->middleware('admin');
+    Route::post('/update_barang', [AdminController::class, 'update_barang'])->name('admin.update-barang')->middleware('admin');
+
+    Route::get('/incoming-order', [AdminController::class, 'incoming_order'])->name('incoming-order')->middleware('admin');
+
+    Route::get('/order-detail/{id}', [AdminController::class,'order_detail'])->name('order-detail')->middleware('admin');
+
+    Route::get('/add-product', [AdminController::class,'add_product'])->name('add-product')->middleware('admin');
+
+    Route::post('/store-product', [AdminController::class,'store_product'])->name('store-product')->middleware('admin');
 
 });
 
@@ -57,6 +65,5 @@ Route::delete('check-out/{id}', [App\Http\Controllers\PesanController::class,'de
 Route::get('konfirmasi-check-out', [App\Http\Controllers\PesanController::class,'konfirmasi']);
 Route::get('history', [App\Http\Controllers\HistoryController::class,'index'])->middleware(['auth', 'verified'])->name('history');
 Route::get('history/{id}', [App\Http\Controllers\HistoryController::class,'detail'])->middleware(['auth', 'verified'])->name('detail');
-
 
 require __DIR__.'/auth.php';

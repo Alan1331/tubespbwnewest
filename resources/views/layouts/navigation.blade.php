@@ -19,9 +19,15 @@ if((Auth::user()) != null) {
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
+                    @if($user_type === 1)
                     <a href="{{ route('dashboard') }}">
                         <img src="{{ asset('images/logo.png') }}" class="rounded mx-auto d-block" width="200" alt="">
                     </a>
+                    @elseif($user_type === 2)
+                    <a href="{{ route('admin.dashboard') }}">
+                        <img src="{{ asset('images/logo.png') }}" class="rounded mx-auto d-block" width="200" alt="">
+                    </a>
+                    @endif
                 </div>
 
                 <!-- Navigation Links -->
@@ -40,12 +46,14 @@ if((Auth::user()) != null) {
                                     $notif = \App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count(); 
                                 }
                             ?>
+                            @if($user_type === 1)
                             <a class="nav-link" href="{{ url('check-out') }}">
                                 <i class="fa fa-shopping-cart fa-lg"></i>
                                 @if(!empty($notif))
                                 <span class="badge badge-danger">{{ $notif }}</span>
                                 @endif
                             </a>
+                            @endif
                             </button>
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ $auth_user->name }}</div>
@@ -60,13 +68,15 @@ if((Auth::user()) != null) {
                     </x-slot>
                     
                     <x-slot name="content">
+                        @if($user_type === 1)
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        @endif
 
-                        @if($user_type === 1))
+                        @if($user_type === 1)
                             <x-dropdown-link :href="route('history')">
-                                {{ __('Order History') }}
+                                {{ __('My Order') }}
                             </x-dropdown-link>
                         @endif
 
@@ -82,6 +92,20 @@ if((Auth::user()) != null) {
                                 </x-dropdown-link>
                             </form>
                         @endif
+                        <!--Incoming Order -->
+                        @if($user_type === 2)
+                            <x-dropdown-link :href="route('incoming-order')">
+                                {{ __('Incoming Order') }}
+                            </x-dropdown-link>
+                        @endif
+
+                        <!--Add Product-->
+                        @if($user_type === 2)
+                            <x-dropdown-link :href="route('add-product')">
+                                {{ __('Add Product') }}
+                            </x-dropdown-link>
+                        @endif
+
                         @if($user_type === 2)
                             <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf
@@ -125,11 +149,13 @@ if((Auth::user()) != null) {
             </div>
 
             <div class="mt-3 space-y-1">
+                @if($user_type === 1)
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+                @endif
             
-                @if($user_type === 1))
+                @if($user_type === 1)
                 <x-responsive-nav-link :href="route('history')">
                     {{ __('Order History') }}
                 </x-responsive-nav-link>
