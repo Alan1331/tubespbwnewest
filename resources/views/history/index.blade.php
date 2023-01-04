@@ -36,16 +36,16 @@
                                         <!-- 1 = belum, 2 = sudah, 3 = dikirim, 4 = selesai-->
                                         @switch($pesanan->status)
                                         @case('1')
-                                            Belum Dibayar
+                                            Unpaid
                                             @break
                                         @case('2')
-                                            Sudah Dibayar
+                                            Paid
                                             @break
                                         @case('3')
-                                            Sedang Dikirim
+                                            On Shipping
                                             @break
                                         @case('4')
-                                            Selesai
+                                            Order Done
                                             @break
                                         @default
                                             Undefined

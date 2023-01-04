@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Go Back</a>
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary mt-3"><i class="fa fa-arrow-left"></i> Go Back</a>
             </div>
             <div class="col-md-12 mt-2">
                 <nav aria-label="breadcrumb">
