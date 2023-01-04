@@ -77,12 +77,4 @@ class AdminController extends Controller
 
      	return view('admin.order-detail', compact('pesanan','pesanan_details'));
     }
-
-    public function add_product()
-    {
-    	$pesanan = Pesanan::where('id', $id)->first();
-    	$pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
-
-     	return view('admin.order-detail', compact('pesanan','pesanan_details'));
-    }
 }

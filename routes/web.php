@@ -37,7 +37,9 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/order-detail/{id}', [AdminController::class,'order_detail'])->name('order-detail')->middleware('admin');
 
-    Route::get('/add-product}', [AdminController::class,'add_product'])->name('add-product')->middleware('admin');
+    Route::get('/add-product', function(){
+        return view('admin.add-product');
+    })->name('add-product')->middleware('admin');
 
 });
 
