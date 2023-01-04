@@ -101,4 +101,21 @@ class AdminController extends Controller
         Alert::success('Barang Sukses ditambah', 'Success');
         return redirect()->route('add-product');
     }
+
+    public function confirm_order($id)
+    {
+        $pesanan = Pesanan::where('id', $id)->first();
+        $pesanan->status = 2;
+        $pesanan->save();
+
+        return AdminController::incoming_order();
+    }
+
+    public function shipping_order($id) {
+        $pesanan = Pesanan::where('id', $id)->first();
+        $pesanan->status = 3;
+        $pesanan->save();
+
+        return AdminController::incoming_order();
+     }
 }

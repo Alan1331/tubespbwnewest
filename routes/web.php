@@ -41,6 +41,9 @@ Route::prefix('admin')->group(function (){
 
     Route::post('/store-product', [AdminController::class,'store_product'])->name('store-product')->middleware('admin');
 
+    Route::get('/confirm-order/{id}', [AdminController::class,'confirm_order'])->middleware('admin');
+
+    Route::get('/shipping/{id}', [AdminController::class,'shipping_order'])->middleware('admin');
 });
 
 /* ---------------------------------- End Admin Route ---------------------------------- */
