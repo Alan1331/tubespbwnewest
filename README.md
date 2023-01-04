@@ -1,3 +1,15 @@
+<p align="center"><a href="https://github.com/Alan1331/tubespbwnewest" target="_blank"><img src="public/images/logo.png" width="400" alt="Aduls - Store"></a></p>
+
+## About Aduls - Store
+
+Aduls - Store is a Basic E-Commerce App using Bootstrap 5, basically it's using manual payment method to check.
+
+## Let's Meet the Creator
+- Ahmad Abdul Fatah as Fullstack Developer (more into Front-end)
+- Syekh Maulana Wijaya as Fullstack Developer (more into Back-end)
+- Alfian Mohammad Rizki as Documentation
+
+## Learning Laravel
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
