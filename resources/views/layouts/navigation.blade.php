@@ -64,9 +64,9 @@ if((Auth::user()) != null) {
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        @if($user_type === 1))
+                        @if($user_type === 1)
                             <x-dropdown-link :href="route('history')">
-                                {{ __('Order History') }}
+                                {{ __('My Order') }}
                             </x-dropdown-link>
                         @endif
 
@@ -82,6 +82,20 @@ if((Auth::user()) != null) {
                                 </x-dropdown-link>
                             </form>
                         @endif
+                        <!--Incoming Order -->
+                        @if($user_type === 2)
+                            <x-dropdown-link :href="route('incoming-order')">
+                                {{ __('Incoming Order') }}
+                            </x-dropdown-link>
+                        @endif
+
+                        <!--Add Product-->
+                        @if($user_type === 2)
+                            <x-dropdown-link :href="route('incoming-order')">
+                                {{ __('Add Product') }}
+                            </x-dropdown-link>
+                        @endif
+
                         @if($user_type === 2)
                             <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf
@@ -129,7 +143,7 @@ if((Auth::user()) != null) {
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
             
-                @if($user_type === 1))
+                @if($user_type === 1)
                 <x-responsive-nav-link :href="route('history')">
                     {{ __('Order History') }}
                 </x-responsive-nav-link>

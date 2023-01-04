@@ -33,6 +33,8 @@ Route::prefix('admin')->group(function (){
 
     Route::post('/update_barang/{id}', [AdminController::class, 'update_barang'])->name('update_barang')->middleware('admin');
 
+    Route::get('/incoming-order', [AdminController::class, 'incoming_order'])->name('incoming-order')->middleware('admin');
+
 });
 
 /* ---------------------------------- End Admin Route ---------------------------------- */
