@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
             <div class="col-md-12 mt-2">
                 <nav aria-label="breadcrumb">
@@ -34,18 +34,31 @@
                                     <td>{{ $pesanan->tanggal }}</td>
                                     <td>
                                         <!-- 1 = belum, 2 = sudah, 3 = dikirim, 4 = selesai-->
-                                        @if($pesanan->status == 1)
-                                        Belum dibayar
-                                        @else
-                                        Sudah dibayar 
-                                        @endif
+                                        @switch($pesanan->status)
+                                        @case('1')
+                                            Belum Dibayar
+                                            @break
+                                        @case('2')
+                                            Sudah Dibayar
+                                            @break
+                                        @case('3')
+                                            Sedang Dikirim
+                                            @break
+                                        @case('4')
+                                            Selesai
+                                            @break
+                                        @default
+                                            Undefined
+                                            @break
+                                        @endswitch
                                     </td>
                                     <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
                                     <td>
                                         <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
-
+                                        @if($pesanan->status == 3)
                                         <!-- Make Status to 4 -->
                                         <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-check"></i> Selesai</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -34,15 +34,27 @@
                                     <td>{{ $pesanan->tanggal }}</td>
                                     <td>
                                         <!-- 1 = belum, 2 = sudah, 3 = dikirim, 4 = selesai-->
-                                        @if($pesanan->status == 1)
-                                        Belum dibayar
-                                        @else
-                                        Sudah dibayar 
-                                        @endif
+                                        @switch($pesanan->status)
+                                        @case('1')
+                                            Belum Dibayar
+                                            @break
+                                        @case('2')
+                                            Sudah Dibayar
+                                            @break
+                                        @case('3')
+                                            Sedang Dikirim
+                                            @break
+                                        @case('4')
+                                            Selesai
+                                            @break
+                                        @default
+                                            Undefined
+                                            @break
+                                        @endswitch
                                     </td>
                                     <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
                                     <td>
-                                        <a href="{{ url('history') }}/{{ $pesanan->status }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Konfirmasi Order</a>
+                                        <a href="{{ url('admin/history') }}/{{ $pesanan->status }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Detail Pesanan</a>
                                     </td>
                                 </tr>
                                 @endforeach
