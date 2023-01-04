@@ -18,14 +18,14 @@
                   </ol>
                 </nav>
             </div>
-            <div class="col-md-12 mt-1">
+            <div class="col-md-12 mt-1 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                             </div>
                             <div class="col-md-6 mt-5">
-                                <form method="post" action="{{ route('admin.update-barang') }}" >
+                                <form method="post" action="{{ route('store-product') }}" enctype="multipart/form-data" >
                                     @csrf
                                     <table class="table table-striped">
                                         <tbody>
@@ -33,7 +33,7 @@
                                                 <td>Gambar Barang</td>
                                                 <td>:</td>
                                                 <td>
-                                                    <input type="file" name="gambar" class="form-control" required autocomplete="gambar">
+                                                    <input type="file" name="gambar_barang" class="form-control" required autocomplete="gambar_barang">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -67,7 +67,7 @@
                                         </tbody>
                                     </table>
                                     <button type="submit" class="btn btn-outline-primary mt-2">
-                                        Save
+                                        Add Product
                                     </button>
                                 </form>
                             </div>

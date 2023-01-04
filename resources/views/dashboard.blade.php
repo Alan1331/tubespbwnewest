@@ -13,7 +13,7 @@
             @foreach($barangs as $barang)
             <div class="col-md-4 mb-5">
                 <div class="card">
-                  <img src="{{ url('uploads') }}/{{ $barang->gambar_barang }}" width ="50%" class="card-img-top">
+                    <img src="{{ asset('storage/storage/uploads/' .$barang->gambar_barang)}}" width ="50%" class="card-img-top">
                   <div class="card-body">
                     <h5 class="card-title">{{ $barang->nama_barang }}</h5>
                     <p class="card-text">
