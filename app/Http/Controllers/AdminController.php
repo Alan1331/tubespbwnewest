@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Pesanan;
@@ -78,20 +79,26 @@ class AdminController extends Controller
      	return view('admin.order-detail', compact('pesanan','pesanan_details'));
     }
 
-    public function confirm_order($id)
-    {
-        $pesanan = Pesanan::where('id', $id)->first();
-        $pesanan->status = 2;
-        $pesanan->save();
-
-        return AdminController::incoming_order();
+    public function add_product(){
+        return view('admin.add-product');
     }
 
-    public function shipping_order($id) {
-        $pesanan = Pesanan::where('id', $id)->first();
-        $pesanan->status = 3;
-        $pesanan->save();
+    public function store_product(Request $request){
 
-        return AdminController::incoming_order();
+        $pic_name= $request->file('gambar_barang')->store('');
+
+        $request->file('gambar_barang')->store('public/storage/uploads');
+
+        $barang = new Barang();
+        $barang->nama_barang = $request->nama_barang;
+        $barang->gambar_barang = $pic_name;
+        $barang->harga = $request->harga;
+        $barang->stok = $request->stok;
+        $barang->keterangan = $request->keterangan;
+
+        $barang->save();
+
+        Alert::success('Barang Sukses ditambah', 'Success');
+        return redirect()->route('add-product');
     }
 }
