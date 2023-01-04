@@ -7,6 +7,7 @@ use App\Models\Barang;
 use App\Models\Pesanan;
 use App\Models\User;
 use App\Models\Admin;
+use Alert;
 use Auth;
 use DB;
 
@@ -43,15 +44,22 @@ class AdminController extends Controller
         return view('admin.product-edit', compact('barang'));
     }
 
-    public function update_barang(Request $request, $id){
-        $barang = Barang::findOrFail($id);
-        $barang->harga = $request->input('harga');
-        $barang->stok = $request->input('stok');
+    public function update_barang(Request $request){
+        $barang = Barang::findOrFail($request->input('id'));
+        $barang->harga = AdminController::convertToInt($request->input('harga'));
+        $barang->stok = AdminController::convertToInt($request->input('stok'));
         $barang->keterangan = $request->input('keterangan');
         $barang->save();
 
     	Alert::success('Barang Sukses diupdate', 'Success');
-    	return redirect('admin-dashboard');
+    	return redirect()->route('admin.dashboard');
+    }
+
+    public function convertToInt($string) {
+        // Remove the commas from the string
+        $string = str_replace(',', '', $string);
+        // Convert the string to an integer and return the result
+        return intval($string);
     }
 
     public function incoming_order(){

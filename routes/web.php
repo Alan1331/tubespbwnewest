@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/product-edit/{id}', [AdminController::class, 'edit_product'])->name('product-edit')->middleware('admin');
 
-    Route::post('/update_barang/{id}', [AdminController::class, 'update_barang'])->name('update_barang')->middleware('admin');
+    Route::post('/update_barang', [AdminController::class, 'update_barang'])->name('admin.update-barang')->middleware('admin');
 
     Route::get('/incoming-order', [AdminController::class, 'incoming_order'])->name('incoming-order')->middleware('admin');
 
