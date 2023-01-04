@@ -54,8 +54,8 @@ class AdminController extends Controller
     	return redirect('admin-dashboard');
     }
 
-    public function incoming_order($id){
-        $pesanans = Pesanan::where('id', Auth::admin()->id)->where('status', '!=',0)->get();
+    public function incoming_order(){
+        $pesanans = Pesanan::where('id', Auth::guard('admin')->user()->id)->where('status', '!=',0)->get();
 
     	return view('history.index', compact('pesanans'));
      	return view('admin.incoming-order', compact('pesanan','pesanan_details'));
