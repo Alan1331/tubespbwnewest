@@ -30,4 +30,13 @@ class HistoryController extends Controller
 
      	return view('history.detail', compact('pesanan','pesanan_details'));
     }
+
+    public function selesai($id)
+    {
+        $pesanan = Pesanan::where('id', $id)->first();
+        $pesanan->status = 4;
+        $pesanan->save();
+
+        return HistoryController::index();
+    }
 }

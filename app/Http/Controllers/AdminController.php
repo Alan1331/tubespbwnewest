@@ -77,4 +77,21 @@ class AdminController extends Controller
 
      	return view('admin.order-detail', compact('pesanan','pesanan_details'));
     }
+
+    public function confirm_order($id)
+    {
+        $pesanan = Pesanan::where('id', $id)->first();
+        $pesanan->status = 2;
+        $pesanan->save();
+
+        return AdminController::incoming_order();
+    }
+
+    public function shipping_order($id) {
+        $pesanan = Pesanan::where('id', $id)->first();
+        $pesanan->status = 3;
+        $pesanan->save();
+
+        return AdminController::incoming_order();
+    }
 }
