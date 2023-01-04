@@ -54,7 +54,13 @@
                                     </td>
                                     <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
                                     <td>
-                                        <a href="{{ url('admin/order-detail') }}/{{ $pesanan->status }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Order Detail</a>
+                                        <a href="{{ url('admin/order-detail') }}/{{ $pesanan->id }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Order Detail</a>
+                                        
+                                        @if($pesanan->status == 1)
+                                        <a href="{{ url('admin/confirm-order/' . $pesanan->id) }}" class="btn btn-primary"><i class="fa fa-check"></i> Confirm Order</a>
+                                        @elseif($pesanan->status == 2)
+                                        <a href="{{ url('admin/shipping/' . $pesanan->id) }}" class="btn btn-primary"><i class="fa fa-check"></i> Shipping</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

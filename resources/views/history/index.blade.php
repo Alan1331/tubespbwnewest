@@ -57,7 +57,7 @@
                                         <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
                                         @if($pesanan->status == 3)
                                         <!-- Make Status to 4 -->
-                                        <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-check"></i> Selesai</a>
+                                        <a href="{{ url('history/selesai') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-check"></i> Selesai</a>
                                         @endif
                                     </td>
                                 </tr>

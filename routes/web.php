@@ -41,6 +41,9 @@ Route::prefix('admin')->group(function (){
 
     Route::post('/store-product', [AdminController::class,'store_product'])->name('store-product')->middleware('admin');
 
+    Route::get('/confirm-order/{id}', [AdminController::class,'confirm_order'])->middleware('admin');
+
+    Route::get('/shipping/{id}', [AdminController::class,'shipping_order'])->middleware('admin');
 });
 
 /* ---------------------------------- End Admin Route ---------------------------------- */
@@ -65,5 +68,6 @@ Route::delete('check-out/{id}', [App\Http\Controllers\PesanController::class,'de
 Route::get('konfirmasi-check-out', [App\Http\Controllers\PesanController::class,'konfirmasi']);
 Route::get('history', [App\Http\Controllers\HistoryController::class,'index'])->middleware(['auth', 'verified'])->name('history');
 Route::get('history/{id}', [App\Http\Controllers\HistoryController::class,'detail'])->middleware(['auth', 'verified'])->name('detail');
+Route::get('history/selesai/{id}', [App\Http\Controllers\HistoryController::class,'selesai'])->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

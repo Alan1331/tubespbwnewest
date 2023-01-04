@@ -65,7 +65,12 @@
                                 </tr>
                                  <tr>
                                     <td colspan="5" align="right"><strong>Total yang harus ditransfer :</strong></td>
-                                    <td align="right"><strong>Rp. {{ number_format($pesanan->kode+$pesanan->jumlah_harga) }}</strong></td>
+                                    <td align="right"><strong>Rp. {{ number_format($pesanan->kode+$pesanan->jumlah_harga) }}</strong>
+                                        @if($pesanan->status == 3)
+                                        <!-- Make Status to 4 -->
+                                        <a href="{{ url('history/selesai') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-check"></i> Selesai</a>
+                                        @endif
+                                    </td>
                                     
                                 </tr>
                             </tbody>

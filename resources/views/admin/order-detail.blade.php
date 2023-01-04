@@ -1,8 +1,9 @@
+
 <x-app-layout>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ url('history') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="{{ route('incoming-order') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
             <div class="col-md-12 mt-2">
                 <nav aria-label="breadcrumb">
@@ -66,7 +67,11 @@
                                  <tr>
                                     <td colspan="5" align="right"><strong>Total to be Paid :</strong></td>
                                     <td align="right"><strong>Rp. {{ number_format($pesanan->kode+$pesanan->jumlah_harga) }}</strong><br>
-                                        <a href="{{ url('history') }}" class="btn btn-primary mt-2"><i class="fa fa-check"></i> Confirm Order</a>
+                                        @if($pesanan->status == 1)
+                                            <a href="{{ url('admin/confirm-order/' . $pesanan->id) }}" class="btn btn-primary mt-2"><i class="fa fa-check"></i> Confirm Order</a>
+                                        @elseif($pesanan->status == 2)
+                                        <a href="{{ url('admin/shipping/' . $pesanan->id) }}" class="btn btn-primary mt-2"><i class="fa fa-check"></i> Shipping</a>
+                                        @endif
                                     </td>
                                    
                                 </tr>
