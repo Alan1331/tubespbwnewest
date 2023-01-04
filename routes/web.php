@@ -35,7 +35,9 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/incoming-order', [AdminController::class, 'incoming_order'])->name('incoming-order')->middleware('admin');
 
-    Route::get('/history/{id}', [App\Http\Controllers\HistoryController::class,'detail'])->middleware('admin');
+    Route::get('/order-detail/{id}', [AdminController::class,'order_detail'])->name('order-detail')->middleware('admin');
+
+    Route::get('/add-product}', [AdminController::class,'add_product'])->name('add-product')->middleware('admin');
 
 });
 

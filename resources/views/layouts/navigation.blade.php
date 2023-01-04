@@ -101,7 +101,7 @@ if((Auth::user()) != null) {
 
                         <!--Add Product-->
                         @if($user_type === 2)
-                            <x-dropdown-link :href="route('incoming-order')">
+                            <x-dropdown-link :href="route('add-product')">
                                 {{ __('Add Product') }}
                             </x-dropdown-link>
                         @endif

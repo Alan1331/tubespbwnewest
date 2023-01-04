@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Pesanan;
+use App\Models\PesananDetail;
 use App\Models\User;
 use App\Models\Admin;
 use Alert;
@@ -67,5 +68,21 @@ class AdminController extends Controller
 
     	// return view('history.index', compact('pesanans'));
      	return view('admin.incoming-order', compact('pesanans'));
+    }
+
+    public function order_detail($id)
+    {
+    	$pesanan = Pesanan::where('id', $id)->first();
+    	$pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+
+     	return view('admin.order-detail', compact('pesanan','pesanan_details'));
+    }
+
+    public function add_product()
+    {
+    	$pesanan = Pesanan::where('id', $id)->first();
+    	$pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+
+     	return view('admin.order-detail', compact('pesanan','pesanan_details'));
     }
 }

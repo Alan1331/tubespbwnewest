@@ -2,28 +2,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('dashboard') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-primary mt-3"><i class="fa fa-arrow-left"></i> Go Back</a>
             </div>
             <div class="col-md-12 mt-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Riwayat Pemesanan</li>
+                        <li class="breadcrumb-item active" aria-current="page">My Order</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3><i class="fa fa-history"></i> Riwayat Pemesanan</h3>
+                        <h3><i class="fa fa-history"></i> My Order</h3>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal</th>
+                                    <th>Date</th>
                                     <th>Status</th>
-                                    <th>Jumlah Harga</th>
-                                    <th>Aksi</th>
+                                    <th>Total Price</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

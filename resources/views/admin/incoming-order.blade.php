@@ -2,28 +2,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Go Back</a>
             </div>
             <div class="col-md-12 mt-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Riwayat Pemesanan</li>
+                        <li class="breadcrumb-item active" aria-current="page">Incoming Order</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3><i class="fa fa-history"></i> Riwayat Pemesanan</h3>
+                        <h3><i class="fa fa-history"></i> Incoming Order</h3>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal</th>
+                                    <th>Date</th>
                                     <th>Status</th>
-                                    <th>Jumlah Harga</th>
-                                    <th>Aksi</th>
+                                    <th>Total Price</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,16 +36,16 @@
                                         <!-- 1 = belum, 2 = sudah, 3 = dikirim, 4 = selesai-->
                                         @switch($pesanan->status)
                                         @case('1')
-                                            Belum Dibayar
+                                            Unpaid
                                             @break
                                         @case('2')
-                                            Sudah Dibayar
+                                            Paid
                                             @break
                                         @case('3')
-                                            Sedang Dikirim
+                                            On Shipping
                                             @break
                                         @case('4')
-                                            Selesai
+                                            Order Done
                                             @break
                                         @default
                                             Undefined
@@ -54,7 +54,7 @@
                                     </td>
                                     <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
                                     <td>
-                                        <a href="{{ url('admin/history') }}/{{ $pesanan->status }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Detail Pesanan</a>
+                                        <a href="{{ url('admin/order-detail') }}/{{ $pesanan->status }}" value="2" class="btn btn-primary"><i class="fa fa-info"></i> Order Detail</a>
                                     </td>
                                 </tr>
                                 @endforeach
