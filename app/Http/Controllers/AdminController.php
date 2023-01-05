@@ -47,10 +47,19 @@ class AdminController extends Controller
     }
 
     public function update_barang(Request $request){
+        $request->harga = AdminController::convertToInt($request->input('harga'));
+        $request->stok = AdminController::convertToInt($request->input('stok'));
+
+        $validated = $request->validate([
+            'harga' => 'required|integer',
+            'stok' => 'required|integer',
+            'keterangan' => 'string'
+        ]);
+
         $barang = Barang::findOrFail($request->input('id'));
-        $barang->harga = AdminController::convertToInt($request->input('harga'));
-        $barang->stok = AdminController::convertToInt($request->input('stok'));
-        $barang->keterangan = $request->input('keterangan');
+        $barang->harga = $validated->harga;
+        $barang->stok = $validated->stok;
+        $barang->keterangan = $validated->keterangan;
         $barang->save();
 
     	Alert::success('Barang Sukses diupdate', 'Success');
