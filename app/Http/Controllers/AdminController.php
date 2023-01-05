@@ -94,7 +94,15 @@ class AdminController extends Controller
 
     public function store_product(Request $request){
 
-        $pic_name= $request->file('gambar_barang')->store('');
+        $validated = $request->validate([
+            'nama_barang' => 'required|string',
+            'gambar_barang' => 'required|image',
+            'harga' => 'required|integer',
+            'stok' => 'required|integer',
+            'keterangan' => 'string'
+        ]);
+
+        $pic_name = $request->file('gambar_barang')->store('');
 
         $request->file('gambar_barang')->store('public/storage/uploads');
 
